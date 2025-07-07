@@ -125,7 +125,7 @@
         </div>
         <div class="w-100 bg-waring text-white" style="height: 300px;  ">
 
-          <div class="w-75 bg-danger text-white" style="height: 350px;  background-size: cover;  background-image: url(Rectangle\ 141.png);padding: 30px 0">  <h3 style="color: #FFFFFF; font-weight: 700; margin-left:30px;">Help Your<br> Business Win!</h3>
+          <div class="w-75 bg-dager text-white" style="height: 350px;  background-size: cover;  background-image: url(Rectangle\ 141.png);padding: 30px 0">  <h3 style="color: #FFFFFF; font-weight: 700; margin-left:30px;">Help Your<br> Business Win!</h3>
             <p style="font-size: 12px;color: #FFFFFF; font-weight: 200;margin-left:30px;"> phlox is a trusted advisor and an objective<br>resource  for more than 17000 organizations in <br> 90+ countries.</p>
 
             <div class="w-50   btn btn-md" style="height: 32px;margin-left:30px; font-size: 10px; margin-top: 70px;background-color: #FFFFFF; color: #01C881; font-weight: 700;">Find Your Solution <i style="color: #01C881; margin-left: 8px; height: 20px;" class="fa-solid fa-arrow-right"></i> </div>
