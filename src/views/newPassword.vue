@@ -76,8 +76,13 @@ export default {
       confirmPassword: '',
       loading: false,
       error: null,
-      errors: {}
+      errors: {},
+      token: null
     }
+  },
+  created() {
+    this.token = this.$route.query.token
+    console.log('Token:', this.token)
   },
   methods: {
 async resetPassword() {
@@ -95,7 +100,7 @@ async resetPassword() {
   }
   this.loading = true;
   try {
-  const response = await fetch('https://siwes-task-2.onrender.com/auth/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyZDdkN2JlNC04NWU5LTRjNmMtODNhNi01ZDUxNGMxZDBhMjgiLCJlbWFpbCI6Im9tb2xld2FvLnRpbW90aHkuMTdAZ21haWwuY29tIiwiaWF0IjoxNzUxODc5ODI1LCJleHAiOjE3NTE5NjYyMjV9.YIh5nMDUvZmMYi9hcpIFXRaKKCioyym-b8hlwK4nKBc', {
+  const response = await fetch(`https://siwes-task-2.onrender.com/auth/reset-password/${this.token}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

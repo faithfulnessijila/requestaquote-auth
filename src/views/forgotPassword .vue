@@ -20,7 +20,7 @@
 </button>
                 <p v-if="error">{{ error }}</p>
     </form>
-    <p v-if="successMessage" style="color: green; font-weight: bold; text-align: center;">{{ successMessage }}</p>
+    <p v-if="successMessage" style="color: green; font-weight: bold; font-size:10px; margin-top:-20px; text-align: center;">{{ successMessage }}</p>
 
 
     <p  style="margin-left: 189px; font-size: 10px; margin-top: 35px;text-shadow: 0 0 2px  rgba(0, 0, 2px, 0.2); color: rgba(0, 0, 0, 0.5);">privacy policy &nbsp;&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp;&nbsp; Terms &nbsp;&&nbsp; conditions </p>
@@ -105,7 +105,7 @@ export default {
         if (response.ok) {
   this.successMessage = 'Password reset link sent to your email address.';
   setTimeout(() => {
-    this.$router.push('/newPassword');
+    
   }, 2000);
 }
 
