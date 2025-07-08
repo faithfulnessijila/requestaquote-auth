@@ -52,7 +52,23 @@
             Fill up personal information and <br />
             start journey with us
           </p>
-
+          <button @click="$router.push('/sign-up')"
+            class="btn btn-sm"
+            style="
+              border: 1.5px solid white;
+              padding: 5px 30px;
+              border-radius: 15px;
+              margin-left: 140px;
+              margin-top: 20px;
+              color: #ffffff;
+              font-weight: 700;
+              font-family:jali greeek;
+              font-size: 11px;
+              
+            "
+          >
+            Sign in                              
+          </button>
         </div>
     </div>
   </div>
@@ -105,6 +121,7 @@ export default {
         if (response.ok) {
   this.successMessage = 'Password reset link sent to your email address.';
   setTimeout(() => {
+ 
     
   }, 2000);
 }
