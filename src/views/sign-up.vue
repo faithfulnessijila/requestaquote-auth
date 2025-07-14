@@ -33,14 +33,14 @@
                   v-model="form.lastName"
                 id="fnam2"
                 class="form-control"
-                style="width: 170px; height: 27px"
+                style="width: 170px; height: 27px;"
               />
             </div>
           </div>
 
           <div class="form-group d-flex" style="">
             <div class="">
-              <label for="fname3" class="form-text" style="font-size: 10px; font-weight: 700"
+              <label for="fname3" class="form-text" style="font-size: 10px; font-weight: 700;"
                 >Email</label
               >
               <input
@@ -49,14 +49,14 @@
                 required
                 id="fname3"
                 class="form-control"
-                style="width: 360px; height: 27px"
+                style="width: 360px; height: 27px;"
               />
             </div>
           </div>
 
           <div class="form-group d-flex" style="">
             <div class="">
-              <label for="fname4" class="form-text" style="font-size: 10px; font-weight: 700"
+              <label for="fname4" class="form-text" style="font-size: 10px; font-weight: 700;"
                 >Password</label
               >
               <input
@@ -65,14 +65,14 @@
                  v-model="form.password"
                 id="fname4"
                 class="form-control"
-                style="width: 360px; height: 27px"
+                style="width: 360px; height: 27px;"
               />
             </div>
           </div>
 
           <div class="form-group d-flex" style="">
             <div class="">
-              <label for="fname5" class="form-text" style="font-size: 10px; font-weight: 700"
+              <label for="fname5" class="form-text" style="font-size: 10px; font-weight: 700;"
                 >Re-enter password</label
               >
               <input
@@ -92,11 +92,11 @@
               <input
                 type="checkbox" v-model="terms"
 
-                style="height: 16px; width: 16px; cursor: pointer; margin-top: 15px"
+                style="height: 16px; width: 16px; cursor: pointer; margin-top: 15px;"
               />
               <p
                 class="card-link text-dark"
-                style="font-size: 9px; margin-top: -27px; margin-left: 18px"
+                style="font-size: 9px; margin-top: -27px; margin-left: 18px;"
               >
                 I've read and agree with terms of service and <br />our privacy policy
               </p>
