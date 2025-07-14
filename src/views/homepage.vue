@@ -52,8 +52,8 @@
           <div class="bg-se w-25 mt-1" style="height: 22px">
             <img class="" style="height: 100% !important; width: 100%" src="/user.png" alt="" />
           </div>
-          <a @click="handleAuth" class="mt-2" 
-            
+          <a @click="handleAuth" class="mt-2"
+
             style="
               color: #0c2754;
               margin-left: 4px;
@@ -616,13 +616,13 @@
 
 <div class="w-100 bg-dangr d-flex" style="height: 200px">
   <img style="width: 100% !important; height: 100% !important " src="/Rectangle 150.png" />
-  <div class="w-100 bg-info" style="height: 200px; margin-left: 10px">
+  <div class="w-100 bg-ino" style="height: 200px; margin-left: 10px">
     <img style="width: 100% !important; height: 100% !important " src="/Rectangle 151.png" />
   </div>
-  <div class="w-100 bg-primary" style="height: 200px; margin-left: 5px">
+  <div class="w-100 bg-pimary" style="height: 200px; margin-left: 5px">
     <img style="width: 100% !important; height: 100% !important " src="/Rectangle 152.png" />
   </div>
-  <div class="w-100 bg-warning" style="height: 200px; margin-left: 5px">
+  <div class="w-100 bg-waning" style="height: 200px; margin-left: 5px">
     <img style="width: 100% !important; height: 100% !important " src="/Rectangle 153.png" />
   </div>
 </div>
@@ -858,7 +858,7 @@ font-weight: 500;
 color: #0c2753;
 background-color: white;
 }
-</style> 
+</style>
 
 
 
