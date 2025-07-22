@@ -103,50 +103,25 @@
             </div>
           </div>
           <button
-          type="submit"
-          :disabled="loader"
-            class="btn btn-md"
-            style="
-             background-color: #01C881;
-              border-radius: 5px;
-              color: #ffffff;
-              font-weight: bold;
-              font-size: 12px;
-              width: 360px;
-              margin-top: 14px;
-            "
-          >
-          <svg
-          v-show="loader"
-  xmlns="http://www.w3.org/2000/svg"
-  width="40"
-  height="40"
-  viewBox="0 0 50 50"
+  type="submit"
+  :disabled="loader"
+  class="btn btn-md"
+  style="background-color: #01C881; border-radius: 5px; color: #ffffff; font-weight: bold; font-size: 12px; width: 360px; margin-top: 14px;"
 >
-  <circle
-    cx="25"
-    cy="25"
-    r="20"
-    fill="none"
-    stroke="#fff"
-    stroke-width="5"
-    stroke-linecap="round"
-    stroke-dasharray="90,150"
-    stroke-dashoffset="0"
+  <svg v-if="loader"
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 50 50"
+    style="margin-right: 5px;"
   >
-    <animateTransform
-      attributeName="transform"
-      type="rotate"
-      from="0 25 25"
-      to="360 25 25"
-      dur="1s"
-      repeatCount="indefinite"
-    />
-  </circle>
-</svg>
+    <circle cx="25" cy="25" r="20" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="90,150" stroke-dashoffset="0">
+      <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="1s" repeatCount="indefinite" />
+    </circle>
+  </svg>
+  <span v-if="!loader">Sign up</span>
+</button>
 
-            Sign up
-          </button>
           <p style="margin-left: 170px; font-size: 10px; font-weight: 700; margin-top: 20px">OR</p>
           <div class="form-group d-flex" style="margin-top: -4px">
             <div
@@ -227,7 +202,7 @@
               font-weight: 700;
               font-size: 11px;
               font-family:jali greeek;
-              
+
             "
           >
             Sign in
@@ -250,64 +225,65 @@
 export default {
   name: 'SignUp',
   data() {
-    return {
-      form: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-      },
-      confirmPassword: '',
-      loader: false,
-      terms: false,
-    }
-  },
+  return {
+    form: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    },
+    confirmPassword: '',
+    loader: false,
+    terms: false,
+    succmsg: '',
+    errormsg: '',
+  }
+},
+
   mounted() {},
   methods: {
     async signUpUser() {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(this.form.email.trim())) {
-        alert("Invalid email address")
-        return
-      }
-      if (this.form.password !== this.confirmPassword) {
-        alert("Passwords do not match")
-        return
-      }
-      if (!this.terms) {
-        alert("Please agree to the terms and conditions")
-        return
-      }
-      this.loader = true
-      let response;
-      try {
-        response = await fetch('https://siwes-task-2.onrender.com/auth/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.form),
-        })
-        if (response.ok) {
-  const data = await response.json()
-  console.log('Success:', data);
-  alert("Sign up was successful")
-  this.$router.push('/otp');
-}
-else {
-          try {
-            const errorResponse = await response.json();
-            alert(errorResponse.message || "Error signing up")
-          } catch {
-            alert("Error signing up")
-          }
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert("Error signing up")
-      }
-      this.loader = false
+  this.succmsg = '';
+  this.errormsg = '';
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(this.form.email.trim())) {
+    this.errormsg = "Invalid email address";
+    return;
+  }
+  if (this.form.password !== this.confirmPassword) {
+    this.errormsg = "Passwords do not match";
+    return;
+  }
+  if (!this.terms) {
+    this.errormsg = "Please agree to the terms and conditions";
+    return;
+  }
+
+  this.loader = true;
+  try {
+    const response = await fetch('https://siwes-task-2.onrender.com/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(this.form),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Success:', data);
+      this.succmsg = "Sign up was successful! Redirecting...";
+      localStorage.setItem('emailForVerification', this.form.email);
+      this.$router.push('/otp');
+    } else {
+      const errorResponse = await response.json();
+      this.errormsg = errorResponse.message || "Error signing up";
     }
+  } catch (error) {
+    console.error('Error:', error);
+    this.errormsg = "Error signing up";
+  }
+  this.loader = false;
+}
   }
 }
 </script>

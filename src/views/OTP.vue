@@ -7,18 +7,19 @@
 
     <p style="text-align: center;  font-size: 12px;text-shadow: 0 0 2px  rgba(0, 0, 2px, 0.2); color: rgba(0, 0, 0, 0.5); margin-top: 19px; text-align: center;">Your code was sent to you via email </p>
     <div class="d-flex w-100"  type="number"    style="height: 50px;  padding: 20px 60px;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input0" class=" w-100"  v-model="otpDigits[0]"  type="number" maxlength="1" @input="focusNextInput(1)"  style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; border-radius: 4px;text-align: center; border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input1" class=" w-100"  v-model="otpDigits[1]"  type="number" maxlength="1" @input="focusNextInput(2)" style ="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input2" class=" w-100"  v-model="otpDigits[2]"  type="number" maxlength="1" @input="focusNextInput(3)" style ="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input3" class=" w-100"  v-model="otpDigits[3]"  type="number" maxlength="1" @input="focusNextInput(4)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" ref="input4" class=" w-100"  v-model="otpDigits[4]"  type="number" maxlength="1" @input="focusNextInput(5)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input5" class=" w-100"  v-model="otpDigits[5]"  type="number" maxlength="1" @input="focusNextInput(6)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
+    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 0)"  ref="input0" class=" w-100"  v-model="otpDigits[0]"  type="number" maxlength="1" @input="focusNextInput(1)"  style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; border-radius: 4px;text-align: center; border-color: transparent;">
+    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 1)"  ref="input1" class=" w-100"  v-model="otpDigits[1]"  type="number" maxlength="1" @input="focusNextInput(2)" style ="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
+    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input2" @keydown="handleBackspace($event, 2)"  class=" w-100"  v-model="otpDigits[2]"  type="number" maxlength="1" @input="focusNextInput(3)" style ="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
+    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input3" class=" w-100" @keydown="handleBackspace($event, 3)"   v-model="otpDigits[3]"  type="number" maxlength="1" @input="focusNextInput(4)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
+    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 4)"  ref="input4" class=" w-100"  v-model="otpDigits[4]"  type="number" maxlength="1" @input="focusNextInput(5)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
+    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 5)"   ref="input5" class=" w-100"  v-model="otpDigits[5]"  type="number" maxlength="1" @input="focusNextInput(6)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
     </div>
 
 
 
     <button :disabled="loading" @click="verifyOtp" class="btn btn-sm " type="submit" style="background-color: #01C881;  padding: 5px 30px; border-radius: 15px; margin-left: 235px; margin-top: 70px;
-                color: #FFFFFF;font-weight: bold;font-size: 12px;"><span v-if="loading">Loading...</span>
+                color: #FFFFFF;font-weight: bold;font-size: 12px;"><span v-if="loading"><i class="fa fa-spinner fa-spin"></i> Verifying...</span>
+
   <span style="font-family:jali greeek;" v-else>Verify</span>
 </button>     <p v-if="error" style="color: red; margin-left: 235px; font-size: 10px; margin-top: 10px;">{{ error }}</p>
 
@@ -75,7 +76,6 @@
 
 
 
-
 <script>
 export default {
   data() {
@@ -87,9 +87,8 @@ export default {
       countdown: 60,
       resendSuccess: false,
       verificationSuccess: false,
-    resendLoading: false,
-
-
+      resendLoading: false,
+      email: '',  // Add email here
     }
   },
   watch: {
@@ -100,100 +99,124 @@ export default {
       deep: true
     }
   },
+  created() {
+    // Fetch email from localStorage
+    this.email = localStorage.getItem('email') || localStorage.getItem('emailForVerification') || '';
+    if (!this.email) {
+      this.error = "Email not found. Please sign up again.";
+    }
+  },
+
   methods: {
-    validatePaste(event) {
+  validatePaste(event) {
     const pastedData = event.clipboardData.getData('text');
-    if (!/^\d$/.test(pastedData)) {
+    if (!/^\d+$/.test(pastedData)) {
       event.preventDefault();
     }
   },
-    validateNumber(event) {
+
+  validateNumber(event) {
     const charCode = event.which ? event.which : event.keyCode;
     if (charCode < 48 || charCode > 57) {
       event.preventDefault();
     }
   },
-    async verifyOtp() {
-      this.loading = true;
-      try {
-        const otp = this.otpDigits.join('');
-        if (otp.length !== 6 || !/^\d{6}$/.test(otp)) {
-          this.error = 'Invalid OTP';
-          return;
-        }
-        const response = await fetch('https://siwes-task-2.onrender.com/auth/signup/verifyotp', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ otp })
-        });
-        if (response.ok) {
-          this.verificationSuccess = true;
-          setTimeout(() => {
-            this.$router.push('/sign-in');
-          }, 2000);
-        } else {
-          const errorData = await response.json();
-          this.error = errorData.message || 'An error occurred';
-        }
-      } catch (e) {
-        console.error(e);
-        this.error = 'An error occurred';
-      } finally {
-        this.loading = false;
-      }
-    },
-    focusNextInput(index) {
-      if (index < this.otpDigits.length && this.otpDigits[index - 1].trim() !== '') {
-        this.$nextTick(() => {
-          this.$refs[`input${index}`].focus();
-        });
-      }
-    },
-async resendOtp() {
-  if (this.resendLoading || this.resendDisabled) return;
-  this.resendLoading = true;
-  try {
-    const response = await fetch('http://localhost:3000/auth/signup/resendotp', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    if (response.ok) {
-      console.log('OTP resent successfully');
-      this.resendSuccess = true;
-      setTimeout(() => {
-        this.resendSuccess = false;
-      }, 2000);
-      this.resendDisabled = true;
-      this.startCountdown();
-    } else {
-      const errorData = await response.json();
-      this.error = errorData.message || 'An error occurred';
+
+  handleBackspace(event, index) {
+    // Move to previous input if current is empty and backspace is pressed
+    if (event.key === 'Backspace' && !this.otpDigits[index] && index > 0) {
+      this.$refs[`input${index - 1}`].focus();
     }
-  } catch (e) {
-    console.error(e);
-    this.error = 'An error occurred';
-  } finally {
-    this.resendLoading = false;
-  }
-},
-    startCountdown() {
-      const intervalId = setInterval(() => {
-        if (this.countdown > 0) {
-          this.countdown--;
-        } else {
-          clearInterval(intervalId);
-          this.resendDisabled = false;
-          this.countdown = 60;
-        }
-      }, 1000);
+  },
+
+  async verifyOtp() {
+    this.loading = true;
+    this.error = null;
+    try {
+      const otp = this.otpDigits.join('');
+      if (otp.length !== 6 || !/^\d{6}$/.test(otp)) {
+        this.error = 'Invalid OTP';
+        return;
+      }
+      const response = await fetch('https://siwes-task-2.onrender.com/auth/signup/verifyotp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: this.email, otp })
+      });
+      if (response.ok) {
+        this.verificationSuccess = true;
+        setTimeout(() => {
+          this.$router.push('/sign-in');
+        }, 2000);
+      } else {
+        const errorData = await response.json();
+        this.error = errorData.message || 'An error occurred';
+      }
+    } catch (e) {
+      console.error(e);
+      this.error = 'An error occurred';
+    } finally {
+      this.loading = false;
     }
+  },
+
+  focusNextInput(index) {
+    if (index < this.otpDigits.length && this.otpDigits[index - 1].trim() !== '') {
+      this.$nextTick(() => {
+        this.$refs[`input${index}`].focus();
+      });
+    }
+  },
+
+  async resendOtp() {
+    if (this.resendLoading || this.resendDisabled) return;
+    this.resendLoading = true;
+    try {
+      const response = await fetch('https://siwes-task-2.onrender.com/auth/signup/resendotp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: this.email })
+      });
+      if (response.ok) {
+        console.log('OTP resent successfully');
+        this.resendSuccess = true;
+        setTimeout(() => {
+          this.resendSuccess = false;
+        }, 2000);
+        this.resendDisabled = true;
+        this.startCountdown();
+      } else {
+        const errorData = await response.json();
+        this.error = errorData.message || 'An error occurred';
+      }
+    } catch (e) {
+      console.error(e);
+      this.error = 'An error occurred';
+    } finally {
+      this.resendLoading = false;
+    }
+  },
+
+  startCountdown() {
+    const intervalId = setInterval(() => {
+      if (this.countdown > 0) {
+        this.countdown--;
+      } else {
+        clearInterval(intervalId);
+        this.resendDisabled = false;
+        this.countdown = 60;
+      }
+    }, 1000);
   }
 }
+
+}
 </script>
+
 
 
 
