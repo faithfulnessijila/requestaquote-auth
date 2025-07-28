@@ -1,10 +1,10 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg  px-3">
+    <nav class="navbar navbar-expand-lg px-3 py-2 ps-lg-5">
   <div class="container-fluid">
-    <!-- Brand / Logo -->
+    <!-- Logo -->
     <div class="d-flex align-items-center me-3" style="cursor: pointer;">
-      <div @click="$router.push('/')" class="me-3">
+      <div class="me-3" @click="$router.push('/')">
         <a class="card-link">
           <img src="/image1.png" alt="logo" style="width: 45px; height: 45px;" />
         </a>
@@ -12,23 +12,31 @@
       <div style="background-color: #0b2653; width: 1px; height: 25px;"></div>
     </div>
 
-    <!-- Toggle button for mobile -->
-   <!-- Toggle button for mobile -->
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-  aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
-  style="background-color: #01c881; border: 2px solid #01c881; padding: 6px 10px; border-radius: 5px;">
+    <!-- Hamburger Toggle -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="background-color: #01c881; padding: 6px 10px; border: none; border-radius: 5px;"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+        <path
+          fill="none"
+          stroke="#ffffff"
+          stroke-linecap="round"
+          stroke-miterlimit="10"
+          stroke-width="40"
+          d="M88 152h336M88 256h336M88 360h336"
+        />
+      </svg>
+    </button>
 
-
-  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 512 512" style="filter: invert(1);">
-	<path fill="none" stroke="#0c2753" stroke-linecap="round" stroke-miterlimit="10" stroke-width="48" d="M88 152h336M88 256h336M88 360h336" />
-</svg>
- 
-</button>
-
-
-    <!-- Navbar links and actions -->
+    <!-- Navigation Menu -->
     <div class="collapse navbar-collapse" id="mainNavbar">
-      <!-- Centered Navigation links -->
       <ul
         class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2 gap-lg-4 text-center d-flex flex-column flex-lg-row align-items-center justify-content-center"
       >
@@ -46,27 +54,27 @@
         </li>
       </ul>
 
-      <!-- Right-side user and button -->
-      <div class="d-flex flex-column flex-lg-row align-items-center gap-3 mt-3 mt-lg-0">
+      <!-- Right section -->
+      <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center gap-3 py-1 mt-4">
         <!-- User info -->
-        <div class="d-flex align-items-center">
+        <div
+          class="d-flex align-items-center"
+          style="cursor: pointer;"
+          @click="handleAuth"
+        >
           <div class="me-2" style="width: 25px; height: 25px;">
-            <img src="/user.png" alt="user" class="img-fluid rounded-circle" />
+            <img src="/user.png" alt="User" class="img-fluid rounded-circle" />
           </div>
-          <a
-            @click="handleAuth"
-            class="fw-bold text-dark text-decoration-none"
-            style="font-size: 14px; cursor: pointer;"
-          >
+          <span class="fw-bold text-dark" style="font-size: 14px;">
             {{ token ? 'Sign out' : 'Sign in' }}
-          </a>
+          </span>
         </div>
 
-        <!-- Quote button -->
+        <!-- CTA button -->
         <div
           @click="$router.push('/requestaquote')"
-          class="btn btn-sm mt-2 mt-lg-0"
-          style="background-color: #01c881; color: #ffffff; font-weight: bold; font-size: 12px; border-radius: 7px;"
+          class="btn btn-sm px-3 py-2"
+          style="background-color: #01c881; color: #ffffff; font-weight: bold; font-size: 13px; border-radius: 7px; cursor: pointer;"
         >
           Request a quote
         </div>
@@ -74,6 +82,8 @@
     </div>
   </div>
 </nav>
+
+
 
 
 
@@ -874,6 +884,11 @@ font-size: 14px;
       margin-top: 20px;
     }
   }
+  .navbar-toggler:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
 li a {
 color: black;
 }
