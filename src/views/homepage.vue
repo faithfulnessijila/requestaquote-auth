@@ -13,10 +13,18 @@
     </div>
 
     <!-- Toggle button for mobile -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-      aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+   <!-- Toggle button for mobile -->
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+  aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
+  style="background-color: #01c881; border: 2px solid #01c881; padding: 6px 10px; border-radius: 5px;">
+
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 512 512" style="filter: invert(1);">
+	<path fill="none" stroke="#0c2753" stroke-linecap="round" stroke-miterlimit="10" stroke-width="48" d="M88 152h336M88 256h336M88 360h336" />
+</svg>
+ 
+</button>
+
 
     <!-- Navbar links and actions -->
     <div class="collapse navbar-collapse" id="mainNavbar">
