@@ -1,97 +1,88 @@
 <template>
-  <div>
-    <div class=" w-100" style="height: 100vh; padding:70px 0px; background-color: #0C2754;">
-    <div class="bg-danger d-flex w-75" style="height: 470px; border-radius: 5px;  margin-left: 150px;">
-    <div class="" style="height: 470px; width: 60%; background-color: #fff;padding-top: 90px;"><h2 style="color: #01C881; text-align: center; padding-top: 20px; font-weight: 700; font-family:jali greeek;">Forgot Password</h2>
-    <div class="" style="height: 5px; width: 7%; background-color: #01C881; border-radius: 10px; margin-left: 245px; margin-top: -5px;"></div>
+  <div style="height: 100vh; background-color: #0C2754; padding: 70px 0">
+    <div class="container">
+      <div class="row bg-danger rounded-3 overflow-hidden mx-auto" style="max-width: 1000px; height: 470px;">
+        <!-- Left Section -->
+        <div class="col-12 col-md-7 bg-white d-flex flex-column justify-content-center align-items-center px-4">
+          <h2 class="text-center fw-bold" style="color: #01C881; font-family: jali greeek;">Forgot Password</h2>
+          <div class="mb-3" style="height: 5px; width: 50px; background-color: #01C881; border-radius: 10px;"></div>
 
-    <p style="text-align: center; font-size: 13px;text-shadow: 0 0 2px  rgba(0, 0, 2px, 0.2); color: rgba(0, 0, 0, 0.5); margin-top: 19px; text-align: center;">Enter your email address</p>
-    <form @submit.prevent="forgotPassword" class="form-group" style=" padding-left: 160px;height: 180px; margin-top: 25px;">
+          <p class="text-center" style="font-size: 13px; color: rgba(0, 0, 0, 0.5); text-shadow: 0 0 2px rgba(0,0,0,0.2);">
+            Enter your email address
+          </p>
 
-            <label for="fname1" class="form-number" style="font-size: 10px; font-weight: 700; position: absolute; z-index: 2; margin-left: 8px;margin-top: -5px;"><p style="background-color: white; font-size: 8px !important;">Email</p></label>
-        <input v-model="email"   type="email" id="fname1" placeholder="example@mail.com" class="form-control " style="width: 250px; height:28px;position: relative;"> <div class="error" v-if="errors.email">{{ errors.email}}</div>
+          <form @submit.prevent="forgotPassword" class="w-100 d-flex flex-column align-items-center mt-3">
+            <div class="form-group mb-2 position-relative" style="width: 250px;">
+              <label for="fname1" class="position-absolute" style="font-size: 10px; font-weight: 700; top: -10px; left: 10px; background: white; padding: 0 2px;">
+                Email
+              </label>
+              <input
+                v-model="email"
+                type="email"
+                id="fname1"
+                placeholder="example@mail.com"
+                class="form-control"
+                style="height: 28px; font-size: 12px;"
+              />
+              <div class="text-danger small mt-1" v-if="errors.email">{{ errors.email }}</div>
+            </div>
 
+            <button
+              :disabled="loading"
+              type="submit"
+              class="btn btn-sm mt-2"
+              style="background-color: #01C881; color: #fff; font-weight: bold; font-size: 12px; width: 250px;"
+            >
+              <span v-if="loading">Loading...</span>
+              <span v-else style="font-family: jali greeek;">Continue</span>
+            </button>
 
-
-
-            <button :disabled="loading" class="btn btn-sm " type="submit" style="background-color: #01C881;  padding: 5px 30px; border-radius: 5px;  margin-top: 20px;width: 250px;
-                color: #FFFFFF;font-weight: bold;font-size: 12px;"><span v-if="loading">Loading...</span>
-  <span style="font-family:jali greeek;" v-else>Continue</span>
-</button>
-                <p v-if="error">{{ error }}</p>
-    </form>
-    <p v-if="successMessage" style="color: green; font-weight: bold; font-size:10px; margin-top:-20px; text-align: center;">{{ successMessage }}</p>
-
-
-    <p  style="margin-left: 189px; font-size: 10px; margin-top: 35px;text-shadow: 0 0 2px  rgba(0, 0, 2px, 0.2); color: rgba(0, 0, 0, 0.5);">privacy policy &nbsp;&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp;&nbsp; Terms &nbsp;&&nbsp; conditions </p>
-</div>
-<div
-          class=""
-          style="height: 470px; width: 40%; background-color: #01C881; padding: 120px 0;" > <h2 style="color: white; text-align: center; font-weight: 700; font-family: Amsi Pro, sans-serif;">Hello, Friend!</h2>
-          <div
-            class=""
-            style="
-              height: 3px;
-              width: 10%;
-              background-color: white;
-              border-radius: 10px;
-              margin-left: 156px;
-              margin-top: -3px;
-            "
-          ></div>
+            <p v-if="error" class="text-danger small mt-2">{{ error }}</p>
+          </form>
 
           <p
-            style="
-              color: whitesmoke;
-              text-align: center;
-              font-size: 11px;
-              font-weight: 700;
-              margin-top: 15px;
-            "
+            v-if="successMessage"
+            class="text-success fw-bold text-center small mt-2"
           >
-            Fill up personal information and <br />
-            start journey with us
+            {{ successMessage }}
           </p>
-          <button @click="$router.push('/sign-up')"
-            class="btn btn-sm"
-            style="
-              border: 1.5px solid white;
-              padding: 5px 30px;
-              border-radius: 15px;
-              margin-left: 140px;
-              margin-top: 20px;
-              color: #ffffff;
-              font-weight: 700;
-              font-family:jali greeek;
-              font-size: 11px;
-              
-            "
+
+          <p class="text-center mt-3 small" style="color: rgba(0, 0, 0, 0.5);">
+            privacy policy &nbsp; • &nbsp; Terms & Conditions
+          </p>
+        </div>
+
+        <!-- Right Section -->
+        <div class="col-12 col-md-5 d-flex flex-column justify-content-center align-items-center text-white" style="background-color: #01C881;">
+          <h2 class="fw-bold text-center" style="font-family: Amsi Pro, sans-serif;">Hello, Friend!</h2>
+          <div style="height: 3px; width: 50px; background-color: white; border-radius: 10px;"></div>
+          <p class="text-center mt-3" style="font-size: 11px; font-weight: 700;">
+            Fill up personal information and <br />start journey with us
+          </p>
+          <button
+            @click="$router.push('/sign-up')"
+            class="btn btn-outline-light mt-3 px-4 py-1 rounded-pill fw-bold"
+            style="font-size: 11px; font-family: jali greeek;"
           >
-            Sign in                              
+            Sign in
           </button>
         </div>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
-
-
-
-
-
 <script>
-
 export default {
   data() {
-  return {
-    email: '',
-    loading: false,
-    error: null,
-    errors: {},
-    successMessage: null
-  }
-},
+    return {
+      email: '',
+      loading: false,
+      error: null,
+      errors: {},
+      successMessage: null
+    };
+  },
   methods: {
     async forgotPassword() {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,193 +108,37 @@ export default {
           body: JSON.stringify({ email: this.email })
         });
 
-
         if (response.ok) {
-  this.successMessage = 'Password reset link sent to your email address.';
-  setTimeout(() => {
- 
-    
-  }, 2000);
-}
-
-
-
- else {
+          this.successMessage = 'Password reset link sent to your email address.';
+        } else {
           const errorData = await response.json();
           this.error = errorData.message || 'An error occurred';
           this.errors = errorData.errors || {};
         }
-      }
-catch (error) {
-  console.error(error);
-  this.error = 'An error occurred: ' + error.message;
-}
- finally {
+      } catch (error) {
+        console.error(error);
+        this.error = 'An error occurred: ' + error.message;
+      } finally {
         this.loading = false;
       }
     }
   }
-}
-
-
-
-
+};
 </script>
-
-
-
-
-
-
-
-
 
 <style>
 html {
-scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-*{
-font-family: "Space Grotesk", sans-serif;
-margin: 0px;
-padding: 0px;
-}
-::placeholder{
-font-size: 8px;
-color: #e4e4e4;
+* {
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-
-
-
+::placeholder {
+  font-size: 8px;
+  color: #e4e4e4;
+}
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

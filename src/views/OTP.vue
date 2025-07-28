@@ -1,77 +1,70 @@
 <template>
-  <div>
-    <div class=" w-100" style="height: 100vh; padding:70px 0px; background-color: #0C2754;">
-    <div class="bg-danger d-flex w-75" style="height: 470px; border-radius: 5px;  margin-left: 150px;">
-    <div class="" style="height: 470px; width: 60%; background-color: #fff;padding-top: 70px;"><h2 style="color: #01C881; text-align: center; padding-top: 20px; font-weight: 700; font-family:jali greeek;"> OTP Verification</h2>
-    <div class="" style="height: 5px; width: 11%; background-color: #01C881; border-radius: 10px; margin-left: 245px; margin-top: -5px;"></div>
+  <div class="w-100 min-vh-100 d-flex align-items-center justify-content-center" style="background-color: #0C2754;">
+    <div class="container px-3 px-md-5">
+      <div class="row shadow rounded overflow-hidden bg-white">
 
-    <p style="text-align: center;  font-size: 12px;text-shadow: 0 0 2px  rgba(0, 0, 2px, 0.2); color: rgba(0, 0, 0, 0.5); margin-top: 19px; text-align: center;">Your code was sent to you via email </p>
-    <div class="d-flex w-100"  type="number"    style="height: 50px;  padding: 20px 60px;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 0)"  ref="input0" class=" w-100"  v-model="otpDigits[0]"  type="number" maxlength="1" @input="focusNextInput(1)"  style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; border-radius: 4px;text-align: center; border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 1)"  ref="input1" class=" w-100"  v-model="otpDigits[1]"  type="number" maxlength="1" @input="focusNextInput(2)" style ="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input2" @keydown="handleBackspace($event, 2)"  class=" w-100"  v-model="otpDigits[2]"  type="number" maxlength="1" @input="focusNextInput(3)" style ="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)"  ref="input3" class=" w-100" @keydown="handleBackspace($event, 3)"   v-model="otpDigits[3]"  type="number" maxlength="1" @input="focusNextInput(4)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 4)"  ref="input4" class=" w-100"  v-model="otpDigits[4]"  type="number" maxlength="1" @input="focusNextInput(5)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    <input @paste="validatePaste($event)" @keypress="validateNumber($event)" @keydown="handleBackspace($event, 5)"   ref="input5" class=" w-100"  v-model="otpDigits[5]"  type="number" maxlength="1" @input="focusNextInput(6)" style="height: 50px; background-color: white;box-shadow: 0.4px 0.4px 0.8px  0.8px gray; margin-left: 6px;border-radius: 4px;text-align: center;border-color: transparent;">
-    </div>
+        <!-- OTP Form Section -->
+        <div class="col-lg-7 col-12 p-4 text-center">
+          <h2 class="text-success fw-bold" style="font-family: 'jali greeek';">OTP Verification</h2>
+          <div class="mx-auto" style="height: 5px; width: 50px; background-color: #01C881; border-radius: 10px;"></div>
 
+          <p class="text-muted mt-3" style="font-size: 12px;">Your code was sent to you via email</p>
 
+          <!-- OTP Inputs -->
+          <div class="d-flex flex-wrap justify-content-center mt-3 gap-2">
+            <input v-for="(digit, index) in otpDigits" :key="index"
+              :ref="`input${index}`"
+              v-model="otpDigits[index]"
+              inputmode="numeric"
+              maxlength="1"
+              @input="focusNextInput(index + 1)"
+              @keydown="handleBackspace($event, index)"
+              @keypress="validateNumber($event)"
+              @paste="validatePaste($event)"
+              class="form-control text-center"
+              style="width: 45px; height: 50px; box-shadow: 0 0 4px gray; border-radius: 4px;" />
+          </div>
 
-    <button :disabled="loading" @click="verifyOtp" class="btn btn-sm " type="submit" style="background-color: #01C881;  padding: 5px 30px; border-radius: 15px; margin-left: 235px; margin-top: 70px;
-                color: #FFFFFF;font-weight: bold;font-size: 12px;"><span v-if="loading"><i class="fa fa-spinner fa-spin"></i> Verifying...</span>
+          <!-- Submit -->
+          <button :disabled="loading" @click="verifyOtp"
+            class="btn mt-4 px-4 py-2"
+            style="background-color: #01C881; border-radius: 20px; font-size: 12px; color: #fff; font-weight: bold;">
+            <span v-if="loading"><i class="fa fa-spinner fa-spin"></i> Verifying...</span>
+            <span v-else style="font-family: 'jali greeek';">Verify</span>
+          </button>
 
-  <span style="font-family:jali greeek;" v-else>Verify</span>
-</button>     <p v-if="error" style="color: red; margin-left: 235px; font-size: 10px; margin-top: 10px;">{{ error }}</p>
-
-<p style="margin-left: 189px; font-size: 10px; margin-top: 10px;text-shadow: 0 0 2px rgba(0, 0, 2px, 0.2); color: rgba(0, 0, 0, 0.5);">
-  Didn't receive the code?
-  <span :disabled="resendLoading || resendDisabled" @click="resendOtp" :style="{ cursor: resendDisabled ? 'not-allowed' : 'pointer', color: resendDisabled ? 'gray' : '#01C881' }">
-  {{ resendDisabled ? `Resend OTP in ${countdown}s` : resendLoading ? 'Resending...' : 'Resend OTP' }}
-</span>
-
-</p>
-<p v-if="verificationSuccess" style="color: green; margin-left: 235px; font-size: 10px; margin-top: 10px;">OTP verified successfully! Redirecting to sign-in page...</p>
-
-
-
-
-    <p href="" style="margin-left: 189px; font-size: 10px; margin-top: 50px;text-shadow: 0 0 2px  rgba(0, 0, 2px, 0.2); color: rgba(0, 0, 0, 0.5);">privacy policy &nbsp;&nbsp;&nbsp; . &nbsp;&nbsp;&nbsp;&nbsp; Terms &nbsp;&&nbsp; conditions </p>
-</div>
-<div
-          class=""
-          style="height: 470px; width: 40%; background-color: #01C881; padding: 120px 0;" > <h2 style="color: white; text-align: center; font-weight: 700; font-family: Amsi Pro, sans-serif;">Hello, Friend!</h2>
-          <div
-            class=""
-            style="
-              height: 3px;
-              width: 10%;
-              background-color: white;
-              border-radius: 10px;
-              margin-left: 156px;
-              margin-top: -3px;
-            "
-          ></div>
-
-          <p
-            style="
-              color: whitesmoke;
-              text-align: center;
-              font-size: 11px;
-              font-weight: 700;
-              margin-top: 15px;
-            "
-          >
-            Fill up personal information and <br />
-            start journey with us
+          <!-- Errors/Status -->
+          <p v-if="error" class="text-danger mt-2" style="font-size: 10px;">{{ error }}</p>
+          <p v-if="verificationSuccess" class="text-success mt-2" style="font-size: 10px;">
+            OTP verified successfully! Redirecting...
           </p>
 
+          <!-- Resend OTP -->
+          <p class="text-muted mt-3" style="font-size: 10px;">
+            Didn't receive the code?
+            <span @click="resendOtp"
+              :style="{ cursor: resendDisabled ? 'not-allowed' : 'pointer', color: resendDisabled ? 'gray' : '#01C881' }">
+              {{ resendDisabled ? `Resend OTP in ${countdown}s` : resendLoading ? 'Resending...' : 'Resend OTP' }}
+            </span>
+          </p>
+
+          <p class="text-muted mt-5 mb-2" style="font-size: 10px;">Privacy Policy &nbsp;&nbsp;&nbsp;·&nbsp;&nbsp;&nbsp; Terms & Conditions</p>
         </div>
+
+        <!-- Right Section (Hidden on Mobile) -->
+        <div class="col-lg-5 d-none d-lg-flex align-items-center justify-content-center"
+          style="background-color: #01C881;">
+          <div class="text-white text-center px-3">
+            <h2 class="fw-bold" style="font-family: 'Amsi Pro', sans-serif;">Hello, Friend!</h2>
+            <div class="mx-auto my-2" style="height: 3px; width: 50px; background-color: white; border-radius: 10px;"></div>
+            <p style="font-size: 11px; font-weight: 700;">Fill up personal information and<br />start your journey with us.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-  </div>
 </template>
-
-
 
 
 
