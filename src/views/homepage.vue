@@ -1,483 +1,554 @@
 <template>
   <div>
-    <div
-      class="bg-warnig d-flex w-100"
-      style="height: 70px; justify-content: space-between; padding: 13px 81px"
-    >
-      <div class="bg-dar d-flex" style="height: 60px; width: 35%; cursor: pointer">
-        <div class="bg-sry d-flex" style="height: 60px; width: 50%">
-          <div
-            @click="$router.push('/')"
-            class="w-50 bg-ifo"
-            style="height: 60px; padding-left: 25px"
-          >
-            <a class="card-link"
-              ><img class="" style="width: 45px; height: 45px" src="/image1.png" alt=""
-            /></a>
-          </div>
-          <div
-            class=""
-            style="
-              background-color: #0b2653;
-              width: 1px;
-              height: 25px;
-              margin-left: 15px;
-              margin-top: 13px;
-              font-weight: 700;
-            "
-          ></div>
-        </div>
-        <div class="w-100 bg-inf" style="height: 60px; margin-left: -48px">
-          <ul style="list-style: none; display: flex; height: 40px; margin-left: -50px">
-            <li><a class="card-link" style="color: #0c2754; font-weight: 700" href="">Home</a></li>
-
-            <li>
-              <a class="card-link" style="font-weight: lighter; text-decoration: none" href=""
-                >About</a
-              >
-            </li>
-            <li>
-              <a class="card-link" style="font-weight: lighter; text-decoration: none" href=""
-                >Contact</a
-              >
-            </li>
-            <li>
-              <a class="" style="font-weight: lighter; text-decoration: none" href="">Blog</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="d-flex bg-daner" style="height: 60px; width: 25%; background-color: puple">
-        <div class="bg-prmary d-flex" style="width: 37%; height: 60px; padding-top: 15px">
-          <div class="bg-se w-25 mt-1" style="height: 22px">
-            <img class="" style="height: 100% !important; width: 100%" src="/user.png" alt="" />
-          </div>
-          <a @click="handleAuth" class="mt-2"
-
-            style="
-              color: #0c2754;
-              margin-left: 4px;
-              font-size: 14px !important;
-              font-weight: bold;
-              cursor: pointer;
-              text-decoration:none;
-            "
-          >
-          {{ token ? 'Sign out' : 'Sign in' }}
+    <nav class="navbar navbar-expand-lg  px-3">
+  <div class="container-fluid">
+    <!-- Brand / Logo -->
+    <div class="d-flex align-items-center me-3" style="cursor: pointer;">
+      <div @click="$router.push('/')" class="me-3">
+        <a class="card-link">
+          <img src="/image1.png" alt="logo" style="width: 45px; height: 45px;" />
         </a>
+      </div>
+      <div style="background-color: #0b2653; width: 1px; height: 25px;"></div>
+    </div>
+
+    <!-- Toggle button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links and actions -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <!-- Centered Navigation links -->
+      <ul
+        class="navbar-nav mx-auto mb-2 mb-lg-0 gap-2 gap-lg-4 text-center d-flex flex-column flex-lg-row align-items-center justify-content-center"
+      >
+        <li class="nav-item">
+          <a class="nav-link fw-bold text-dark" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="#">Blog</a>
+        </li>
+      </ul>
+
+      <!-- Right-side user and button -->
+      <div class="d-flex flex-column flex-lg-row align-items-center gap-3 mt-3 mt-lg-0">
+        <!-- User info -->
+        <div class="d-flex align-items-center">
+          <div class="me-2" style="width: 25px; height: 25px;">
+            <img src="/user.png" alt="user" class="img-fluid rounded-circle" />
+          </div>
+          <a
+            @click="handleAuth"
+            class="fw-bold text-dark text-decoration-none"
+            style="font-size: 14px; cursor: pointer;"
+          >
+            {{ token ? 'Sign out' : 'Sign in' }}
+          </a>
         </div>
+
+        <!-- Quote button -->
         <div
           @click="$router.push('/requestaquote')"
-          class="btn btn-sm"
-          style="
-            background-color: #01c881;
-            height: 40px;
-            padding-top: 12px;
-            margin: 10px 18px;
-            border-radius: 7px;
-            margin-left: px;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 12px;
-          "
+          class="btn btn-sm mt-2 mt-lg-0"
+          style="background-color: #01c881; color: #ffffff; font-weight: bold; font-size: 12px; border-radius: 7px;"
         >
           Request a quote
         </div>
       </div>
     </div>
+  </div>
+</nav>
 
-    <div
-      class="bg-dager w-100 d-flex"
-      style="
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px 80px;
-        height: fit-content;
-      "
-    >
-      <div class="bg-primar mt-4" style="width: 50%; height: 350px">
-        <h6 style="color: #01c881; font-weight: 700">Welcome To Our Website</h6>
-        <h1 class="mt-3" style="color: #0c2753; font-size: 40px; font-weight: 700">
-          Thinking Insights & <br />
-          Verified Driven <br />
-          Research Data!
-        </h1>
-        <p class="" style="font-size: 10px; color: #0c2753; font-weight: 500">
-          We are experienced professionals who understand that it<br />
-          services is changing, and are true partners who care about your<br />
-          success. Our team provides a consultative approach on <br />emerging technology
-        </p>
-        <!-- <div class="btn btn-sm ml-5 mt-3" style="background-color:#01C881;border-radius: 7px; font-size: 12px;
-    color: white;font-weight: bold;">Request a quote</div> -->
 
-    <div class="d-flex bg-dak" style="align-items: center; gap: 10px">
-      <div
-        @click="$router.push('/requestaquote')"
-        class="btn btn-sm"
-        style="
-          background-color: #01c881;
-          border-radius: 7px;
-          font-size: 12px;
-          color: #ffffff;
-          font-weight: bold;
-          padding: 10px 20px;
-        "
-      >
-        Request a quote
-      </div>
 
-      <div
-        class="bg-sucess d-flex"
-        style="align-items: center; margin-left: 18px; cursor: pointer"
-      >
-        <i
-          style="color: #0b2653; font-size: 30px; font-weight: 700"
-          class="fa-solid fa-circle-play"
-        ></i>
-        <p
+
+
+
+
+<div class="container-fluid py-5 px-3 px-md-5" >
+  <div class="row align-items-center">
+    <!-- Left Content -->
+    <div class="col-12 col-lg-6 mb-5 mb-lg-0">
+      <h6 style="color: #01c881; font-weight: 700;">Welcome To Our Website</h6>
+      <h1 class="mt-3" style="color: #0c2753; font-size: 2.2rem; font-weight: 700;">
+        Thinking Insights &<br />
+        Verified Driven<br />
+        Research Data!
+      </h1>
+      <p class="mt-3" style="font-size: 13px; color: #0c2753; font-weight: 500;">
+        We are experienced professionals who understand that IT<br />
+        services is changing, and are true partners who care about your<br />
+        success. Our team provides a consultative approach on<br />
+        emerging technology.
+      </p>
+
+      <!-- Buttons -->
+      <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
+        <div
+          @click="$router.push('/requestaquote')"
+          class="btn"
           style="
-            font-size: 12px;
-            margin-bottom: 0px;
-            margin-left: 5px;
-            color: #0b2653;
-            font-weight: 700;
+            background-color: #01c881;
+            border-radius: 7px;
+            font-size: 13px;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px 24px;
+            cursor: pointer;
           "
         >
-          play video
-        </p>
+          Request a quote
+        </div>
+
+        <div class="d-flex align-items-center" style="cursor: pointer;">
+          <i class="fa-solid fa-circle-play" style="color: #0b2653; font-size: 30px;"></i>
+          <p class="mb-0 ms-2" style="font-size: 13px; color: #0b2653; font-weight: 700;">
+            Play Video
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="bg-ifo" style="position: relative; width: 40%; margin-right: 90px; height: 450px">
-    <img
-      class="bg"
-      style="height: 100%; width: 100%; background-size: cover"
-      src="/man.png"
-      alt=""
-    />
-    <img
-      class=""
-      style="height: 240px; position: absolute; bottom: -44px; left: -175px"
-      src="/hr.png"
-      alt=""
-    />
-    <div
-      class="bg-secodary"
-      style="
-        padding: 16px;
-        display: flex;
-        box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.2);
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        z-index: 2;
-        right: -50px;
-        top: 167px;
-        background-color: #ffffff;
-      "
-    >
-      <img class="" src="/man1.png" alt="" />
-      <h5 style="font-size: 9px; margin-top: 5px; color: #0c2754; font-weight: 500">
-        ANTHONY HALL
-      </h5>
-      <p style="font-size: 8px; margin-bottom: 10px; color: #0c2754">photographer</p>
-      <h3
-        style="
-          font-size: 12px;
-          font-weight: 700;
-          margin-bottom: 9px;
-          text-align: center;
-          color: #0c2754;
-        "
-      >
-        10 Lifehacks If <br />
-        You Decide Move <br />To Thailand
-      </h3>
-      <div
-        class="btn"
-        style="
-          background-color: #01c881;
-          border-radius: 1px;
-          font-size: 8px;
-          color: #ffffff;
-          font-weight: bold;
-        "
-      >
-        Read More
+
+    <!-- Right Image Section -->
+    <div class="col-12 col-lg-6 position-relative d-flex justify-content-center">
+      <div class="position-relative" style="width: 100%; max-width: 460px;">
+        <!-- Main Image -->
+        <img
+          src="/man.png"
+          alt="Main"
+          class="img-fluid w-100"
+          style="object-fit: cover; height: auto;"
+        />
+
+        <!-- Floating HR Image (hidden on small screens) -->
+        <img
+          src="/hr.png"
+          alt=""
+          class="position-absolute d-none d-xl-block"
+          style="height: 240px; bottom: -44px; left: -175px;"
+        />
+
+        <!-- Floating Card -->
+        <div
+          class="position-absolute d-none d-md-flex flex-column align-items-center shadow"
+          style="
+            top: 167px;
+            right: -50px;
+            background-color: #ffffff;
+            padding: 16px;
+            z-index: 2;
+            width: 160px;
+          "
+        >
+          <img src="/man1.png" alt="Card Avatar" class="img-fluid" />
+          <h5 class="mt-2 mb-1" style="font-size: 10px; color: #0c2754; font-weight: 600;">
+            ANTHONY HALL
+          </h5>
+          <p style="font-size: 9px; margin-bottom: 8px; color: #0c2754;">Photographer</p>
+          <h3
+            class="text-center"
+            style="font-size: 12px; font-weight: 700; margin-bottom: 10px; color: #0c2754;"
+          >
+            10 Lifehacks If<br />
+            You Decide Move<br />
+            To Thailand
+          </h3>
+          <div
+            class="btn"
+            style="
+              background-color: #01c881;
+              border-radius: 3px;
+              font-size: 9px;
+              color: #ffffff;
+              font-weight: bold;
+              padding: 4px 10px;
+            "
+          >
+            Read More
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="bg-daner mt-5 w-100" style="height: 250px; text-align: center; padding-top: 60px">
-  <p style="color: #01c881; font-weight: 800">Nationworld Service , Local Expertise</p>
-  <h2 style="color: #0c2754; font-weight: 700">
-    Our Technology Allows You To Offer The <br />
-    Latest Software To Possible<br />
+
+
+
+
+
+
+
+
+
+<div class="container-fluid mt-5 py-5 text-center">
+  <p class="text-success fw-bold mb-2" style="color: #01c881;">
+    Nationworld Service, Local Expertise
+  </p>
+  <h2 class="fw-bold px-3 px-md-0" style="color: #0c2754; font-size: 1.5rem;">
+    Our Technology Allows You To Offer The <br class="d-none d-md-block" />
+    Latest Software To Possible<br class="d-none d-md-block" />
     Customers!
   </h2>
 </div>
 
-<div class="bg-ino mt-5 d-flex w-100" style="height: 300px; padding: 0px 80px">
-  <div class="w-100 bg-wrning" style="height: 300px">
-    <div class="" style="height: 60px; background-color: ellow; width: 70px">
-      <img class="" style="height: 100% !important; width: 100%" src="/Union.png" alt="" />
+
+
+
+
+
+
+
+
+
+<div class="container-fluid  mt-5 px-4 px-lg-5 py-5">
+  <div class="row text-center gy-4">
+    
+    <!-- IT Management -->
+    <div class="col-12 col-md-4">
+      <div class="mx-auto" style="height: 60px; width: 70px; background-color: yelow;">
+        <img src="/Union.png" alt="" style="height: 100%; width: 100%;" />
+      </div>
+      <h3 class="mt-4 fw-bold" style="color: #0c2753;">IT Management <br /> Services</h3>
+      <p class="mt-3 text-muted small" style="font-weight: 500;">
+        IT management service that manages and <br />
+        oversees the IT infrastructure of organization <br />
+        responsible for network and operations which <br />
+        includes data and communication.
+      </p>
     </div>
-    <h3 style="margin-top: 30px; color: #0c2753; font-weight: 700">
-      IT Management <br />
-      Services
-    </h3>
-    <p style="margin-top: 30px; font-size: 12px; color: #0c2753; font-weight: 500">
-      IT management service that manages and<br />
-      oversees the IT infrastructure of organization<br />
-      responsible for network and operatoins which<br />
-      includes data and communication.
-    </p>
-  </div>
-  <div class="w-100 bg-scondary" style="height: 300px">
-    <div class="" style="height: 60px; background-color: ellow; width: 70px">
-      <img class="" style="height: 100% !important; width: 100%" src="/CYBER.png" alt="" />
+
+    <!-- Cyber Security -->
+    <div class="col-12 col-md-4">
+      <div class="mx-auto" style="height: 60px; width: 70px; background-color: yelow;">
+        <img src="/CYBER.png" alt="" style="height: 100%; width: 100%;" />
+      </div>
+      <h3 class="mt-4 fw-bold" style="color: #0c2753;">Cyber Security <br /> Services</h3>
+      <p class="mt-3 text-muted small" style="font-weight: 500;">
+        IT management service that manages and <br />
+        oversees the IT infrastructure of organization <br />
+        responsible for network and operations which <br />
+        includes data and communication.
+      </p>
     </div>
-    <h3 style="margin-top: 30px; color: #0c2753; font-weight: 700">
-      Cyber Security <br />
-      Services
-    </h3>
-    <p style="margin-top: 30px; font-size: 12px; color: #0c2753; font-weight: 500">
-      IT management service that manages and<br />
-      oversees the IT infrastructure of organization<br />
-      responsible for network and operatoins which<br />
-      includes data and communication.
-    </p>
-  </div>
-  <div class="w-100 bg-suess" style="height: 300px">
-    <div class="" style="height: 60px; background-color: ellow; width: 70px">
-      <img class="" style="height: 100% !important; width: 100%" src="/CLOUD.png" alt="" />
+
+    <!-- Cloud Computing -->
+    <div class="col-12 col-md-4">
+      <div class="mx-auto" style="height: 60px; width: 70px; background-color: yelow;">
+        <img src="/CLOUD.png" alt="" style="height: 100%; width: 100%;" />
+      </div>
+      <h3 class="mt-4 fw-bold" style="color: #0c2753;">Cloud Computing <br /> Services</h3>
+      <p class="mt-3 text-muted small" style="font-weight: 500;">
+        IT management service that manages and <br />
+        oversees the IT infrastructure of organization <br />
+        responsible for network and operations which <br />
+        includes data and communication.
+      </p>
     </div>
-    <h3 style="margin-top: 30px; color: #0c2753; font-weight: 700">
-      Cloud Computing<br />
-      Services
-    </h3>
-    <p style="margin-top: 30px; font-size: 12px; color: #0c2753; font-weight: 500">
-      IT management service that manages and<br />
-      oversees the IT infrastructure of organization<br />
-      responsible for network and operatoins which<br />
-      includes data and communication.
-    </p>
+
   </div>
 </div>
 
-<div
-  class="bg-ino mt-5 d-flex w-100"
-  style="height: 400px; padding: 0px 80px; margin-top: 110px !important"
->
-  <div class="w-100 bg-warnng" style="height: 350px">
-    <div class="" style="height: 60px; background-color: ellow; width: 70px">
-      <img class="" style="height: 100% !important; width: 100%" src="/Union1.png" alt="" />
-    </div>
-    <h3 style="margin-top: 30px; color: #0c2753; font-weight: 700">
-      IT Consulting<br />
-      Services
-    </h3>
-    <p style="margin-top: 30px; font-size: 12px; color: #0c2753; font-weight: 500">
-      IT management service that manages and<br />
-      oversees the IT infrastructure of organization<br />
-      responsible for network and operatoins which<br />
-      includes data and communication.
-    </p>
-  </div>
-  <div class="w-100 bg-seconary" style="height: 350px">
-    <div class="" style="height: 60px; background-color: ellow; width: 70px">
-      <img class="" style="height: 100% !important; width: 100%" src="/Union2.png" alt="" />
-    </div>
-    <h3 style="margin-top: 30px; color: #0c2753; font-weight: 700">
-      Software Dev <br />
-      Services
-    </h3>
-    <p style="margin-top: 30px; font-size: 12px; color: #0c2753; font-weight: 500">
-      IT management service that manages and<br />
-      oversees the IT infrastructure of organization<br />
-      responsible for network and operatoins which<br />
-      includes data and communication.
-    </p>
-  </div>
-  <div class="w-100 bg-waring text-white" style="height: 300px">
-    <div
-      class="w-75 bg-dager text-white"
-      style="
-        height: 350px;
-        background-size: cover;
-        background-image: url(Rectangle\ 141.png);
-        padding: 30px 0;
-      "
-    >
-      <h3 style="color: #ffffff; font-weight: 700; margin-left: 30px">
-        Help Your<br />
-        Business Win!
-      </h3>
-      <p style="font-size: 12px; color: #ffffff; font-weight: 200; margin-left: 30px">
-        phlox is a trusted advisor and an objective<br />resource for more than 17000
-        organizations in <br />
-        90+ countries.
-      </p>
 
-      <div
-        class="w-50 btn btn-md"
-        style="
-          height: 32px;
-          margin-left: 30px;
-          font-size: 10px;
-          margin-top: 70px;
-          background-color: #ffffff;
-          color: #01c881;
-          font-weight: 700;
-        "
-      >
-        Find Your Solution
-        <i
-          style="color: #01c881; margin-left: 8px; height: 20px"
-          class="fa-solid fa-arrow-right"
-        ></i>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid mt-5 px-4 px-md-5">
+  <div class="row text-center gy-4">
+    
+    <!-- IT Consulting Services -->
+    <div class="col-12 col-md-4">
+      <div class="h-100 p-3">
+        <div class="mx-auto" style="height: 60px; width: 70px; background-color: yelow;">
+          <img src="/Union1.png" alt="IT Consulting" style="height: 100%; width: 100%;" />
+        </div>
+        <h3 class="mt-4 fw-bold" style="color: #0c2753;">
+          IT Consulting <br /> Services
+        </h3>
+        <p class="mt-3 small text-muted" style="font-weight: 500;">
+          IT management service that manages and <br />
+          oversees the IT infrastructure of organization <br />
+          responsible for network and operations which <br />
+          includes data and communication.
+        </p>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="w-100 d-flex" style="background-color: #f9f9f9; height: 490px; padding: 43px 80px">
-  <div class="bg-succes" style="height: 400px; position: relative; width: 40% !important">
-    <img
-      style="width: 90% !important; height: 400px; background-size: cover"
-      src="/image 13.png"
-    />
-    <div
-      class="bg-warnng"
-      style="
-        height: 150px;
-        position: absolute;
-        top: 280px;
-        left: -10px;
-        width: 63%;
-        padding: 20px 10px;
-        background-color: white;
-        box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.2);
-      "
-    >
-      <p style="font-size: 13px; color: #0c2754; font-weight: 700">
-        Thinking Phlox, Verified Driven <br />Research, And Metrics Data Help <br />You Make The
-        Right Decisions!
-      </p>
+    <!-- Software Development Services -->
+    <div class="col-12 col-md-4">
+      <div class="h-100 p-3">
+        <div class="mx-auto" style="height: 60px; width: 70px; background-color: yelow;">
+          <img src="/Union2.png" alt="Software Dev" style="height: 100%; width: 100%;" />
+        </div>
+        <h3 class="mt-4 fw-bold" style="color: #0c2753;">
+          Software Dev <br /> Services
+        </h3>
+        <p class="mt-3 small text-muted" style="font-weight: 500;">
+          IT management service that manages and <br />
+          oversees the IT infrastructure of organization <br />
+          responsible for network and operations which <br />
+          includes data and communication.
+        </p>
+      </div>
+    </div>
+
+    <!-- Business Win Banner -->
+    <div class="col-12 col-md-4">
       <div
-        class="w-75 btn btn-md"
+        class="text-start text-white d-flex flex-column justify-content-center h-100 p-4"
         style="
-          height: 32px;
-          background-color: yelow;
-          font-size: 13px;
-          color: #01c881;
-          font-weight: 700;
-          margin-left: -18px;
+          background-image: url('Rectangle 141.png');
+          background-size: cover;
+          background-position: center;
+          border-radius: 6px;
+          min-height: 350px;
         "
       >
-        Read Our Case Study<i
+        <h3 class="fw-bold">Help Your<br />Business Win!</h3>
+        <p class="mt-2" style="font-size: 13px; font-weight: 300;">
+          phlox is a trusted advisor and an objective <br />
+          resource for more than 17,000 organizations in <br />
+          90+ countries.
+        </p>
+        <a
+          class="btn btn-sm mt-4"
           style="
+            background-color: #ffffff;
             color: #01c881;
-            margin-left: 9px;
-            margin-top: 2px;
-            height: 20px;
-            font-size: 15px;
+            font-weight: 700;
+            font-size: 10px;
+            width: fit-content;
           "
-          class="fa-solid fa-arrow-right"
-        ></i>
+        >
+          Find Your Solution
+          <i class="fa-solid fa-arrow-right ms-2" style="color: #01c881;"></i>
+        </a>
       </div>
     </div>
-  </div>
-  <div class="bg-priary" style="height: 400px; padding: 15px 0px; width: 60% !important">
-    <p style="font-size: 12px; margin-left: 15px; color: #01c881; font-weight: 700">
-      Trusted By The World's Best Organization
-    </p>
-    <h2 style="font-size: 25px; color: #0c2754; font-weight: 700">
-      Manages Service Delivery Across <br />Various Business Like, HR, Legal <br />
-      And Other IT Departments!!
-    </h2>
-    <h6 style="font-size: 11px; color: #0c2754; font-weight: 700">
-      Phlox has been helping organizations throughout the world to manage <br />their it with
-      our unique approach to technology management and <br />
-      consultancy solutions. As one of the world's largest ITService Providers, our deep pool of
-      over 130 certified engineers and IT support staff are ready to help.
-    </h6>
-    <p style="font-size: 10px; color: #0c2754; font-weight: 500">
-      As one of the world's largest ITService Providers, our deep pool of over 130 <br />
-      certified engineers and IT support staff are ready to help.
-    </p>
 
-    <h5 style="font-size: 12px; color: #0c2754; font-weight: 700">
-      <i class="fa-solid fa-check"></i> Delivered in more than 450,000 client's interactions
-    </h5>
-    <h5 style="font-size: 12px; color: #0c2754; font-weight: 700">
-      <i class="fa-solid fa-check"></i> Provided by experts to help challenge critical
-      activities
-    </h5>
-    <h5 style="font-size: 12px; color: #0c2754; font-weight: 700">
-      <i class="fa-solid fa-check"></i> Complemented with peer perspectives and advice
-    </h5>
   </div>
 </div>
 
-<div class="w-100 bg-primry mt-5 d-flex" style="height: 100px; padding: 0 80px">
-  <div class="w-100 bg-succes" style="height: 100px">
-    <h2 style="color: #000000; font-weight: 700">6,154</h2>
-    <p style="color: #0b2653; font-weight: 500">
-      Projects And Software<br />
-      Developed in 2021
-    </p>
-  </div>
-  <div class="w-100 bg-primry" style="height: 100px">
-    <h2 style="color: #000000; font-weight: 700">2,512</h2>
-    <p style="color: #0b2653; font-weight: 500">
-      Projects And Software<br />
-      Developed in 2021
-    </p>
-  </div>
-  <div class="w-100 bg-ifo" style="height: 100px">
-    <h2 style="color: #000000; font-weight: 700">1,784</h2>
-    <p style="color: #0b2653; font-weight: 500">
-      Satisfied Clients We <br />
-      Have Served Globally
-    </p>
-  </div>
-  <div class="w-100 bg-seondary" style="height: 100px">
-    <h2 style="color: #000000; font-weight: 700">25</h2>
-    <p style="color: #0b2653; font-weight: 500">
-      Years Of experience In The<br />IT And Software Industry
-    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid py-5 mt-3" style="background-color: #f9f9f9;">
+  <div class="row align-items-center px-3 px-md-5 gy-5">
+
+    <!-- Image & Card Section -->
+    <div class="col-12 col-md-5 position-relative d-flex flex-column align-items-start">
+      <img
+        src="/image 13.png"
+        alt="Case Study"
+        class="img-fluid w-100"
+        style="height: 400px; object-fit: cover;"
+      />
+      <div
+        class="shadow rounded card-overlay"
+        style="
+          background-color: white;
+          padding: 20px 15px;
+          width: 80%;
+          max-width: 320px;
+          position: absolute;
+          top: 280px;
+          left: 0;
+        "
+      >
+        <p class="fw-bold mb-2" style="font-size: 13px; color: #0c2754;">
+          Thinking Phlox, Verified Driven <br />
+          Research, And Metrics Data Help <br />
+          You Make The Right Decisions!
+        </p>
+        <a
+          href="#"
+          class="btn btn-sm mt-2 d-inline-flex align-items-center"
+          style="
+            background-color: #fff;
+            color: #01c881;
+            font-weight: 700;
+            font-size: 13px;
+            border: 1px solid #01c881;
+            transition: all 0.3s ease;
+          "
+          onmouseover="this.style.backgroundColor='#01c881'; this.style.color='#fff';"
+          onmouseout="this.style.backgroundColor='#fff'; this.style.color='#01c881';"
+        >
+          Read Our Case Study
+          <i class="fa-solid fa-arrow-right ms-2" style="font-size: 15px;"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Text Section -->
+    <div class="col-12 col-md-7">
+      <p class="fw-bold mb-2" style="font-size: 13px; color: #01c881;">
+        Trusted By The World's Best Organization
+      </p>
+      <h2 class="fw-bold mb-3" style="font-size: 25px; color: #0c2754;">
+        Manages Service Delivery Across <br />
+        Various Business Like, HR, Legal <br />
+        And Other IT Departments!!
+      </h2>
+      <h6 class="fw-bold mb-3" style="font-size: 12px; color: #0c2754;">
+        Phlox has been helping organizations throughout the world to manage <br />
+        their IT with our unique approach to technology management and <br />
+        consultancy solutions.
+      </h6>
+      <p class="mb-3" style="font-size: 11px; color: #0c2754; font-weight: 500;">
+        As one of the world's largest ITService Providers, our deep pool of over 130 <br />
+        certified engineers and IT support staff are ready to help.
+      </p>
+      <h5 class="mb-2" style="font-size: 13px; color: #0c2754; font-weight: 700;">
+        <i class="fa-solid fa-check me-2 text-success"></i>
+        Delivered in more than 450,000 client's interactions
+      </h5>
+      <h5 class="mb-2" style="font-size: 13px; color: #0c2754; font-weight: 700;">
+        <i class="fa-solid fa-check me-2 text-success"></i>
+        Provided by experts to help challenge critical activities
+      </h5>
+      <h5 class="mb-0" style="font-size: 13px; color: #0c2754; font-weight: 700;">
+        <i class="fa-solid fa-check me-2 text-success"></i>
+        Complemented with peer perspectives and advice
+      </h5>
+    </div>
+
   </div>
 </div>
 
-<div
-  class="w-100 bg-primry mt-5 d-flex"
-  style="height: 160px; padding: 15px 30px; background-color: #0c2754"
->
-  <div class="w-25 bg-sucess" style="height: 100px">
-    <p style="font-size: 15px; color: #01c580; font-weight: 700">
-      Ensure High Availability Of Your Services
-    </p>
-    <h5 style="font-size: 13px; color: #ffffff; font-weight: 700">Affordable Price</h5>
-    <p style="font-size: 11px; color: #ffffff; font-weight: 500">
-      There are many variations passages Ipsum <br />
-      available, but the majority
-    </p>
-  </div>
-  <div class="w-25 bg-primry" style="height: 100px; padding-top: 37px">
-    <h5 style="font-size: 13px; color: #ffffff; font-weight: 700">High Technology</h5>
-    <p style="font-size: 11px; color: #ffffff; font-weight: 500">
-      There are many variations passages Ipsum <br />
-      available, but the majority
-    </p>
-  </div>
-  <div class="w-50 bg-inf" style="height: 100px; padding-top: 37px">
-    <h4 style="font-size: 17px; color: #ffffff; font-weight: 700">
-      Easy solutions for all difficult IT <br />problems, keep your business safe & <br />ensure
-      high availability.
-    </h4>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid mt-5 py-4" >
+  <div class="row text-center g-4 px-3 px-md-5">
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="p-3 h-100">
+        <h2 class="fw-bold text-dark">6,154</h2>
+        <p class="mb-0 text-primary fw-medium" style="font-size: 14px; color: #0b2653;font-weight: 500">
+          Projects And Software <br />
+          Developed in 2021
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="p-3 h-100">
+        <h2 class="fw-bold text-dark">2,512</h2>
+        <p class="mb-0 text-primary fw-medium" style="font-size: 14px;color: #0b2653;font-weight: 500">
+          Projects And Software <br />
+          Developed in 2021
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="p-3 h-100">
+        <h2 class="fw-bold text-dark">1,784</h2>
+        <p class="mb-0 text-primary fw-medium" style="font-size: 14px;color: #0b2653;font-weight: 500">
+          Satisfied Clients We <br />
+          Have Served Globally
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="p-3 h-100">
+        <h2 class="fw-bold text-dark">25</h2>
+        <p class="mb-0 text-primary fw-medium" style="font-size: 14px;color: #0b2653;font-weight: 500">
+          Years Of Experience In The <br />
+          IT And Software Industry
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
+
+
+
+
+
+
+<div class="container-fluid mt-5 py-3" style="background-color: #0c2754;">
+  <div class="row gy-3 px-3 px-md-5">
+
+    <!-- Box 1 -->
+    <div class="col-12 col-md-3">
+      <p style="font-size: 15px; color: #01c580; font-weight: 700">
+        Ensure High Availability Of Your Services
+      </p>
+      <h5 style="font-size: 13px; color: #ffffff; font-weight: 700">Affordable Price</h5>
+      <p style="font-size: 11px; color: #ffffff; font-weight: 500">
+        There are many variations passages Ipsum <br />
+        available, but the majority
+      </p>
+    </div>
+
+    <!-- Box 2 -->
+    <div class="col-12 col-md-3 pt-md-3">
+      <h5 style="font-size: 13px; color: #ffffff; font-weight: 700">High Technology</h5>
+      <p style="font-size: 11px; color: #ffffff; font-weight: 500">
+        There are many variations passages Ipsum <br />
+        available, but the majority
+      </p>
+    </div>
+
+    <!-- Box 3 -->
+    <div class="col-12 col-md-6 pt-md-3">
+      <h4 style="font-size: 17px; color: #ffffff; font-weight: 700">
+        Easy solutions for all difficult IT <br />problems, keep your business safe & <br />ensure
+        high availability.
+      </h4>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
 
 <div class="bg-daner mt-5 w-100" style="height: 190px; text-align: center; padding-top: 60px">
   <p style="color: #01c881; font-weight: 700">Customer Testimonial</p>
@@ -487,295 +558,244 @@
   </h4>
 </div>
 
-<div class="w-100 bg-dnger mt-4 d-flex" style="height: 220px; padding: 0 80px">
-  <div class="w-100 bg-ino" style="height: 205px; background-color: #f9f9f9; padding: 0 30px">
-    <div
-      class="w-25 bg-daner"
-      style="
-        padding: 45px;
-        height: 50px;
-        border-radius: 50%;
-        margin-top: -30px;
-        background-image: url(/Ellipse\ 64.png);
-        background-size: cover;
-      "
-    ></div>
-    <div class="w-100 bg-priary" style="height: 70px; border-bottom: 1px solid #8a8686">
-      <p style="font-size: 12px; color: #000000; font-weight: 700; margin-top: 10px">
-        There are many variations passages of Lorem <br />
-        Ipsum available, but the majority have suffered<br />
-        alteration in some form, by injected or
-      </p>
+<div class="container-fluid mt-4 px-3">
+  <div class="row g-3">
+    <!-- Card 1 -->
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="bg-light p-3" style="height: 100%; background-color: #f9f9f9;">
+        <div
+          class="mx-auto mb-2"
+          style="
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-top: -30px;
+            background-image: url('/Ellipse 64.png');
+            background-size: cover;
+          "
+        ></div>
+        <div style="border-bottom: 1px solid #8a8686;">
+          <p class="fw-bold text-dark" style="font-size: 12px; margin-top: 10px;">
+            There are many variations passages of Lorem <br />
+            Ipsum available, but the majority have suffered <br />
+            alteration in some form, by injected or
+          </p>
+        </div>
+        <div class="mt-2">
+          <h4 style="font-size: 17px; color: #000000; font-weight: 700;">
+            Karla Lynn
+            <span class="float-end">
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+            </span>
+          </h4>
+          <p style="color: #8a8686; font-size: 10px; font-weight: 600;">Sholl's Colonial Cafeteria</p>
+        </div>
+      </div>
     </div>
-    <div class="w-100 bg-wrning" style="height: 50px">
-      <h4 style="font-size: 17px; margin-top: 8px; color: #000000; font-weight: 700">
-        Karla Lynn
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-      </h4>
-      <p style="color: #8a8686; font-size: 10px; font-weight: 600">
-        Sholl's Colonial Cafeteria
-      </p>
-    </div>
-  </div>
 
-  <div
-    class="w-100 bg-ino"
-    style="height: 205px; background-color: whitesmoke; padding: 0 30px; margin-left: 10px"
-  >
-    <div
-      class="w-25 bg-daner"
-      style="
-        padding: 45px;
-        height: 50px;
-        border-radius: 50%;
-        margin-top: -30px;
-        background-image: url(/Ellipse\ 65.png);
-        background-size: cover;
-      "
-    ></div>
-    <div class="w-100 bg-priary" style="height: 70px; border-bottom: 1px solid #8a8686">
-      <p style="font-size: 12px; color: #000000; font-weight: 700; margin-top: 10px">
-        There are many variations passages of Lorem <br />
-        Ipsum available, but the majority have suffered<br />
-        alteration in some form, by injected or
-      </p>
+    <!-- Card 2 -->
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="bg-light p-3" style="height: 100%; background-color: #f9f9f9;">
+        <div
+          class="mx-auto mb-2"
+          style="
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-top: -30px;
+            background-image: url('/Ellipse 65.png');
+            background-size: cover;
+          "
+        ></div>
+        <div style="border-bottom: 1px solid #8a8686;">
+          <p class="fw-bold text-dark" style="font-size: 12px; margin-top: 10px;">
+            There are many variations passages of Lorem <br />
+            Ipsum available, but the majority have suffered <br />
+            alteration in some form, by injected or
+          </p>
+        </div>
+        <div class="mt-2">
+          <h4 style="font-size: 17px; color: #000000; font-weight: 700;">
+            Tomas Campbell
+            <span class="float-end">
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+            </span>
+          </h4>
+          <p style="color: #8a8686; font-size: 10px; font-weight: 600;">Service technician</p>
+        </div>
+      </div>
     </div>
-    <div class="w-100 bg-wrning" style="height: 50px">
-      <h4 style="font-size: 17px; margin-top: 8px; color: #000000; font-weight: 700">
-        Tomas Campbell &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-      </h4>
-      <p style="color: #8a8686; font-size: 10px; font-weight: 600">Service technician</p>
-    </div>
-  </div>
 
-  <div
-    class="w-100 bg-ino"
-    style="height: 205px; background-color: whitesmoke; padding: 0 30px; margin-left: 10px"
-  >
-    <div
-      class="w-25 bg-daner"
-      style="
-        padding: 45px;
-        height: 50px;
-        border-radius: 50%;
-        margin-top: -30px;
-        background-image: url(Ellipse\ 66.png);
-        background-size: cover;
-      "
-    ></div>
-    <div class="w-100 bg-priary" style="height: 70px; border-bottom: 1px solid #8a8686">
-      <p style="font-size: 12px; color: #000000; font-weight: 700; margin-top: 10px">
-        There are many variations passages of Lorem <br />
-        Ipsum available, but the majority have suffered<br />
-        alteration in some form, by injected or
-      </p>
-    </div>
-    <div class="w-100 bg-wrning" style="height: 50px">
-      <h4 style="font-size: 17px; margin-top: 8px; color: #000000; font-weight: 700">
-        Robert Ocampo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="fa-solid fa-star" style="font-size: 9px; color: #01c881"></i>
-        <i
-          class="fa-solid fa-star"
-          style="font-size: 9px; color: #01c881; font-weight: 700"
-        ></i>
-        <i
-          class="fa-solid fa-star"
-          style="font-size: 9px; color: #01c881; font-weight: 700"
-        ></i>
-        <i
-          class="fa-solid fa-star"
-          style="font-size: 9px; color: #01c881; font-weight: 700"
-        ></i>
-        <i
-          class="fa-solid fa-star"
-          style="font-size: 9px; color: #01c881; font-weight: 700"
-        ></i>
-      </h4>
-      <p style="color: #8a8686; font-size: 10px; font-weight: 600">Aquatic biologist</p>
+    <!-- Card 3 -->
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="bg-light p-3" style="height: 100%; background-color: #f9f9f9;">
+        <div
+          class="mx-auto mb-2"
+          style="
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-top: -30px;
+            background-image: url('/Ellipse 66.png');
+            background-size: cover;
+          "
+        ></div>
+        <div style="border-bottom: 1px solid #8a8686;">
+          <p class="fw-bold text-dark" style="font-size: 12px; margin-top: 10px;">
+            There are many variations passages of Lorem <br />
+            Ipsum available, but the majority have suffered <br />
+            alteration in some form, by injected or
+          </p>
+        </div>
+        <div class="mt-2">
+          <h4 style="font-size: 17px; color: #000000; font-weight: 700;">
+            Robert Ocampo
+            <span class="float-end">
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+              <i class="fa-solid fa-star" style="font-size: 9px; color: yellow;"></i>
+            </span>
+          </h4>
+          <p style="color: #8a8686; font-size: 10px; font-weight: 600;">Aquatic biologist</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="bg-daner w-100" style="height: 190px; text-align: center; padding-top: 60px">
-  <p style="color: #01c881; font-weight: 700">Recent Articles</p>
-  <h4 style="color: #0c2754; font-weight: 700">Resourse Library</h4>
+
+
+
+<div class="container-fluid bg-daner text-center py-5">
+  <p class="fw-bold" style="color: #01c881;">Recent Articles</p>
+  <h4 class="fw-bold" style="color: #0c2754;">Resourse Library</h4>
 </div>
 
-<div class="w-100 bg-dangr d-flex" style="height: 200px">
-  <img style="width: 100% !important; height: 100% !important " src="/Rectangle 150.png" />
-  <div class="w-100 bg-ino" style="height: 200px; margin-left: 10px">
-    <img style="width: 100% !important; height: 100% !important " src="/Rectangle 151.png" />
-  </div>
-  <div class="w-100 bg-pimary" style="height: 200px; margin-left: 5px">
-    <img style="width: 100% !important; height: 100% !important " src="/Rectangle 152.png" />
-  </div>
-  <div class="w-100 bg-waning" style="height: 200px; margin-left: 5px">
-    <img style="width: 100% !important; height: 100% !important " src="/Rectangle 153.png" />
+
+<div class="container-fluid mt-5">
+  <div class="row g-2">
+    <div class="col-12 col-sm-6 col-md-3">
+      <img src="/Rectangle 150.png" class="img-fluid w-100 h-100" style="object-fit: cover; height: 200px" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <img src="/Rectangle 151.png" class="img-fluid w-100 h-100" style="object-fit: cover; height: 200px" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <img src="/Rectangle 152.png" class="img-fluid w-100 h-100" style="object-fit: cover; height: 200px" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+      <img src="/Rectangle 153.png" class="img-fluid w-100 h-100" style="object-fit: cover; height: 200px" />
+    </div>
   </div>
 </div>
+
 
 <div
-  class="w-100 bg-da"
-  style="
-    height: 250px;
-    margin-top: 200px;
-    background-color: #0c2754;
-    padding-top: 30px !important;
-  "
+  class="w-100"
+  style="background-color: #0c2754; padding: 40px 20px; margin-top: 200px"
 >
-  <p style="color: #01c680; font-weight: 700; text-align: center; font-size: 10px">
+  <p class="text-center" style="color: #01c680; font-weight: 700; font-size: 12px">
     Join Our Community
   </p>
-  <h4 style="color: #ffffff; font-weight: 700; text-align: center">
+  <h4 class="text-center text-white fw-bold mb-4" style="font-size: 20px">
     Get Best Advertiser <br />In Your Side Pocket
   </h4>
-  <div
-    class="input-group my-5 bg-secodary"
-    style="margin-left: 495px; margin-top: 10px !important; width: 20%"
-  >
-    <input
-      type="text"
-      placeholder=" Enter your email address"
-      class="form-control"
-      style="
-        color: #a99f9f4d;
-        font-weight: 700;
-        font-size: 6px;
-        background-color: #ffffff;
-        border-radius: 3px;
-      "
-    />
-    <div class="input-group-prepend bg-warnng" style="margin-left: 5px">
-      <span
-        class="input-group-text"
-        style="
-          border-radius: 3px;
-          background-color: #01c780;
-          font-weight: small;
-          font-size: 9px;
-          border: none;
-          color: white;
-          cursor: pointer;
-        "
-        >Subscribe</span
-      >
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="Enter your email address"
+            class="form-control"
+            style="
+              font-size: 12px;
+              font-weight: 600;
+              background-color: #ffffff;
+              color: #555;
+              border-radius: 3px;
+            "
+          />
+          <button
+            class="btn"
+            type="button"
+            style="
+              background-color: #01c780;
+              color: white;
+              font-size: 12px;
+              font-weight: 600;
+              border-radius: 3px;
+              margin-left: 5px;
+            "
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div
-  class="w-100 mt-5 d-flex bg-dager"
-  style="height: 200px; justify-content: space-between; padding: 10px 10px"
->
-  <div class="bg-priary" style="height: 50px; width: 60px; padding: 10px">
-    <a href="homepage.html" class="card-link">
-      <img style="width: 35px; height: 35px" src="/image 14.png"
-    /></a>
-  </div>
-  <div class="bg-seconday d-flex" style="height: 150px; width: 780px; padding: 0 70px">
-    <div class="w-100" style="height: 30px">
-      <h6
-        class="text-left text-dark"
-        style="font-size: 12px; color: #000000; font-weight: bold"
-      >
-        Visit Link
-      </h6>
-      <br />
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-      >
-        Privacy</a
-      ><br />
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-        >Terms and Condition</a
-      >
-    </div>
 
-    <div class="w-100" style="height: 30px">
-      <h6
-        class="text-left text-dark"
-        style="font-size: 12px; color: #000000; font-weight: bold"
-      >
-        Company
-      </h6>
-      <br />
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-      >
-        Home</a
-      ><br />
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-        >About Us</a
-      ><br />
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-        >Contact Us</a
-      >
-    </div>
 
-    <div class="w-100" style="height: 30px">
-      <h6
-        class="text-left text-dark"
-        style="font-size: 12px; color: #000000; font-weight: bold"
-      >
-        Contact
-      </h6>
-      <br />
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-      >
-        +99 (0) 101 0000 888</a
-      ><br />
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-        >Info@yourdomain.com</a
-      >
-    </div>
 
-    <div class="w-100" style="height: 30px">
-      <h6
-        class="text-left text-dark"
-        style="font-size: 12px; color: #000000; font-weight: bold"
-      >
-        Address
-      </h6>
-      <br />
 
-      <a
-        class="text-left text-dark"
-        style="font-size: 10px; color: #000000; font-weight: 600; cursor: pointer"
-        >Patricia Amedee 4401 Waldeck Street</a
-      >
-      <a
-        class="text-left text-dark"
-        style="font-size: 9px; color: #000000; font-weight: 600; cursor: pointer"
-        >Grapevine Nashville, Tx 76051</a
-      >
+<div class="w-100  mt-5 pt-4 pb-3" >
+  <div class="container">
+    <div class="row align-items-start">
+      
+      <!-- Logo -->
+      <div class="col-12 col-md-2 mb-4 d-none d-md-flex justify-content-start">
+  <a href="homepage.html">
+    <img src="/image 14.png" alt="Logo" style="width: 35px; height: 35px;" />
+  </a>
+</div>
+
+
+      <!-- Visit Link -->
+      <div class="col-6 col-sm-3 col-md-2 mb-3">
+        <h6 class="fw-bold text-dark" style="font-size: 12px; ">Visit Link</h6>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">Privacy</a>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">Terms and Condition</a>
+      </div>
+
+      <!-- Company -->
+      <div class="col-6 col-sm-3 col-md-2 mb-3">
+        <h6 class="fw-bold" style="font-size: 12px;">Company</h6>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">Home</a>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">About Us</a>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">Contact Us</a>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-6 col-sm-3 col-md-3 mb-3">
+        <h6 class="fw-bold" style="font-size: 12px;">Contact</h6>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">+99 (0) 101 0000 888</a>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">Info@yourdomain.com</a>
+      </div>
+
+      <!-- Address -->
+      <div class="col-6 col-sm-3 col-md-3 mb-3">
+        <h6 class="fw-bold" style="font-size: 12px;">Address</h6>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 10px; cursor: pointer;">Patricia Amedee 4401 Waldeck Street</a>
+        <a href="#" class="d-block text-dark fw-semibold" style="font-size: 9px; cursor: pointer;">Grapevine Nashville, Tx 76051</a>
+      </div>
+
     </div>
   </div>
 </div>
+
 </div>
 </template>
 
@@ -838,6 +858,14 @@ margin-left: 20px;
 padding-top: 15px;
 font-size: 14px;
 }
+@media (max-width: 767.98px) {
+    .card-overlay {
+      position: static !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin-top: 20px;
+    }
+  }
 li a {
 color: black;
 }
