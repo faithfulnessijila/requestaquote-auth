@@ -60,7 +60,7 @@
             Fill up personal information and <br />start journey with us
           </p>
           <button
-            @click="$router.push('/sign-up')"
+            @click="$router.push('/sign-in')"
             class="btn btn-outline-light mt-3 px-4 py-1 rounded-pill fw-bold"
             style="font-size: 11px; font-family: jali greeek;"
           >
